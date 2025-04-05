@@ -21,6 +21,22 @@ app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/tasks", taskRoutes);
 
+// EntryPoint
+app.get("/", (req, res) => {
+  res.json({
+    message: "Welcome to the Task Manager API",
+    version: "1.0.0",
+  });
+});
+
+// Health Check Route
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "UP",
+    timestamp: new Date(),
+  });
+});
+
 // Handle 404 errors for API routes
 app.use((req, res, next) => {
   const error = new Error(`API route not found: ${req.originalUrl}`);
