@@ -33,5 +33,5 @@ The project was designed to be completed within a maximum of 2 days, focusing on
 
 For more detailed information about local setup and demo, please refer to the individual README files in the following directories:
 
-[Backend](./backend/README.md)
-[Frontend](./frontend/README.md)
+- [Backend](./backend/README.md)
+- [Frontend](./frontend/README.md)
