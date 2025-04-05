@@ -15,11 +15,10 @@ const Task = sequelize.define("Task", {
   },
   description: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: true,
   },
   startDate: {
     type: DataTypes.DATE,
-    defaultValue: DataTypes.NOW,
     allowNull: false,
   },
   endDate: {

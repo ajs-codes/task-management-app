@@ -1,8 +1,9 @@
+const { Op } = require("sequelize");
 const { Task } = require("../models");
 
 exports.getTasks = async (req, res) => {
   try {
-    const { page = 1, limit = 10, status } = req.query;
+    const { page = 1, limit = 10, status, name } = req.query;
     const offset = (page - 1) * limit;
 
     let whereClause = {
@@ -12,11 +13,15 @@ exports.getTasks = async (req, res) => {
       whereClause.status = status;
     }
 
+    if (name) {
+      whereClause.name = { [Op.iLike]: `%${name.trim()}%` };
+    }
+
     const tasks = await Task.findAndCountAll({
       where: whereClause,
       limit: parseInt(limit),
       offset: parseInt(offset),
-      order: [["createdAt", "DESC"]],
+      order: [["createdAt", "ASC"]],
     });
 
     res.status(200).json({
