@@ -1,0 +1,46 @@
+const jwt = require("jsonwebtoken");
+const { User } = require("../models");
+
+exports.register = async (req, res) => {
+  try {
+    const { name, email, password, country, city, state, gender } = req.body;
+    const user = await User.create({
+      name,
+      email,
+      password,
+      country,
+      city,
+      state,
+      gender,
+    });
+    res
+      .status(201)
+      .json({ success: true, message: "User registered successfully" });
+  } catch (err) {
+    res
+      .status(400)
+      .json({ success: false, message: "User registration failed" });
+  }
+};
+
+exports.login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ where: { email } });
+
+    if (!user || !user.validPassword(password)) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Invalid email or password" });
+    }
+
+    // Generate JWT
+    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN,
+    });
+
+    res.status(200).json({ success: true, token });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};
