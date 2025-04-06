@@ -30,7 +30,7 @@ exports.getTasks = async (req, res) => {
       data: tasks.rows,
       meta: {
         totalTasks: tasks.count,
-        totalPages: Math.ceil(tasks.count / limit),
+        totalPages: Math.ceil(tasks.count / limit) || 1,
         currentPage: pageNumber,
       },
     });
