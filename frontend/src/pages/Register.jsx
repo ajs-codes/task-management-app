@@ -26,6 +26,7 @@ const Register = () => {
     validationSchema: Yup.object({
       name: Yup.string()
         .min(3, "Name must be at least 3 characters long")
+        .max(50, "Name must be at most 50 characters long")
         .required("Full name is required"),
       email: Yup.string()
         .email("Invalid email address")

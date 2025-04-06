@@ -80,7 +80,9 @@ const TaskTable = () => {
                   {task.name}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
-                  {task.description}
+                  {task.description.length >= 150
+                    ? `${task.description.substring(0, 150)}...`
+                    : task.description}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                   {new Date(task.createdAt).toLocaleDateString()}

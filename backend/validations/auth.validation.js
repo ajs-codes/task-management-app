@@ -12,7 +12,7 @@ const handleValidation = require("./validation");
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/;
 
 const validateRegister = [
-  body("name").notEmpty().isLength({ min: 3 }),
+  body("name").notEmpty().isLength({ min: 3, max: 50 }),
   body("email").notEmpty().isEmail(),
   body("password")
     .notEmpty()

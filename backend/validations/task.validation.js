@@ -25,7 +25,7 @@ const createOrUpdateTaskValidation = [
   body("name")
     .notEmpty()
     .withMessage("Task name is required")
-    .isLength({ min: 2 })
+    .isLength({ min: 2, max: 50 })
     .withMessage("Task name must be at least 2 characters long"),
   body("description")
     .optional()

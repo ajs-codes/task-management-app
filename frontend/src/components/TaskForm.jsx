@@ -12,7 +12,10 @@ const TaskForm = ({ initialValues, onSubmit, buttonText = "Submit" }) => {
       status: "Pending",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Task name is required"),
+      name: Yup.string()
+        .required("Task name is required")
+        .min(3, "Task name must be at least 3 characters")
+        .max(50, "Task name must be at most 50 characters"),
       description: Yup.string(),
       startDate: Yup.date()
         .required("Start date is required")
