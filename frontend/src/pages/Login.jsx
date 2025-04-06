@@ -21,7 +21,12 @@ const Login = () => {
       email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
-      password: Yup.string().required("Password is required"),
+      password: Yup.string()
+        .required("Password is required")
+        .matches(
+          /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,}$/,
+          "Password must be at least 6 characters long, include one number, one lowercase letter, one uppercase letter, and one special character (!@#$%^&*)."
+        ),
     }),
     onSubmit: async (values) => {
       try {

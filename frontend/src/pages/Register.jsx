@@ -16,21 +16,20 @@ const Register = () => {
     initialValues: {
       name: "",
       email: "",
-      mobile: "",
       password: "",
       confirmPassword: "",
       country: "",
       city: "",
       state: "",
       gender: "",
-      position: "",
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Full name is required"),
+      name: Yup.string()
+        .min(3, "Name must be at least 3 characters long")
+        .required("Full name is required"),
       email: Yup.string()
         .email("Invalid email address")
         .required("Email is required"),
-      mobile: Yup.string().required("Mobile number is required"),
       password: Yup.string()
         .min(6, "Password must be at least 6 characters")
         .required("Password is required"),
@@ -39,6 +38,7 @@ const Register = () => {
         .required("Confirm password is required"),
       country: Yup.string().required("Country is required"),
       city: Yup.string().required("City is required"),
+      state: Yup.string().required("State is required"),
       gender: Yup.string().required("Gender is required"),
     }),
     onSubmit: async (values) => {
@@ -47,13 +47,11 @@ const Register = () => {
         const userData = {
           name: values.name,
           email: values.email,
-          mobile: values.mobile,
           password: values.password,
           country: values.country,
           city: values.city,
           state: values.state,
           gender: values.gender,
-          position: values.position,
         };
 
         await register(userData);
@@ -124,34 +122,6 @@ const Register = () => {
                   </p>
                 )}
               </div>
-
-              <div>
-                <label
-                  htmlFor="state"
-                  className="block text-gray-700 text-sm font-medium mb-1"
-                >
-                  State
-                </label>
-                <input
-                  id="state"
-                  name="state"
-                  type="text"
-                  placeholder="Please enter your"
-                  className={`w-full px-3 py-2 border rounded-md ${
-                    formik.touched.state && formik.errors.state
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  }`}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.state}
-                />
-                {formik.touched.city && formik.errors.state && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {formik.errors.state}
-                  </p>
-                )}
-              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -185,33 +155,28 @@ const Register = () => {
 
               <div>
                 <label
-                  htmlFor="mobile"
+                  htmlFor="state"
                   className="block text-gray-700 text-sm font-medium mb-1"
                 >
-                  Phone number
+                  State
                 </label>
-                <div className="flex">
-                  <div className="w-16 flex items-center justify-center bg-gray-100 border border-gray-300 border-r-0 rounded-l-md">
-                    <span className="text-red-500 font-medium">+91</span>
-                  </div>
-                  <input
-                    id="mobile"
-                    name="mobile"
-                    type="text"
-                    placeholder="Phone number..."
-                    className={`w-full px-3 py-2 border rounded-r-md ${
-                      formik.touched.mobile && formik.errors.mobile
-                        ? "border-red-500"
-                        : "border-gray-300"
-                    }`}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.mobile}
-                  />
-                </div>
-                {formik.touched.mobile && formik.errors.mobile && (
+                <input
+                  id="state"
+                  name="state"
+                  type="text"
+                  placeholder="Please enter your"
+                  className={`w-full px-3 py-2 border rounded-md ${
+                    formik.touched.state && formik.errors.state
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  }`}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.state}
+                />
+                {formik.touched.state && formik.errors.state && (
                   <p className="text-red-500 text-xs mt-1">
-                    {formik.errors.mobile}
+                    {formik.errors.state}
                   </p>
                 )}
               </div>
