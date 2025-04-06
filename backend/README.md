@@ -41,7 +41,7 @@ Create a `.env` file in the root of the backend directory with the following var
     DB_PASS=your_database_password
     JWT_SECRET=your_jwt_secret
     JWT_EXPIRES_IN=1h
-    FRONTEND_URL=http://localhost:3000 (if you are running the frontend in local)
+    FRONTEND_URL=http://localhost:5173 (if you are running the frontend in local using vite)
 
 #### 5. Setup Instructions
 
