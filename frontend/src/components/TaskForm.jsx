@@ -157,7 +157,7 @@ const TaskForm = ({ initialValues, onSubmit, buttonText = "Submit" }) => {
           <select
             id="status"
             name="status"
-            className={`w-full px-3 py-2 bg-gray-700 border rounded-md text-white ${
+            className={`appearance-none w-full px-3 py-2 bg-gray-700 border rounded-md text-white ${
               formik.touched.status && formik.errors.status
                 ? "border-red-500"
                 : "border-gray-600"
