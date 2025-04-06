@@ -46,7 +46,7 @@ const TaskTable = () => {
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
               NAME
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
+            <th className="max-w-[200px] px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
               DESCRIPTION
             </th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">
@@ -79,7 +79,7 @@ const TaskTable = () => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
                   {task.name}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+                <td className="px-6 py-4 whitespace-normal text-sm text-gray-300 break-words max-w-[200px]">
                   {task.description.length >= 150
                     ? `${task.description.substring(0, 150)}...`
                     : task.description}
