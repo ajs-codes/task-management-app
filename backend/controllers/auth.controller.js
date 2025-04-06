@@ -48,8 +48,10 @@ exports.login = async (req, res) => {
     const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
-
-    res.status(200).json({ success: true, token, user });
+    const { name, email: userEmail } = user;
+    res
+      .status(200)
+      .json({ success: true, token, user: { name, email: userEmail } });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message, error: err });
   }
@@ -63,7 +65,8 @@ exports.profile = async (req, res) => {
         .status(404)
         .json({ success: false, message: "User not found" });
     }
-    res.status(200).json({ success: true, user });
+    const { name, email } = user;
+    res.status(200).json({ success: true, user: { name, email } });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message, error: err });
   }

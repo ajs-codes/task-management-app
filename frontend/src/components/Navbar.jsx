@@ -23,7 +23,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             <div className="text-gray-300 flex items-center">
               <FaUser className="mr-2" />
-              <span>{currentUser.name || currentUser.email}</span>
+              <span>{currentUser.name}</span>
             </div>
             <button
               onClick={handleLogout}

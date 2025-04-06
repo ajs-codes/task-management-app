@@ -28,7 +28,8 @@ export const AuthProvider = ({ children }) => {
   const fetchUserData = async () => {
     try {
       const response = await getUserProfile();
-      setCurrentUser(response.data);
+      const { user } = response.data;
+      setCurrentUser(user);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching user data:", error);
