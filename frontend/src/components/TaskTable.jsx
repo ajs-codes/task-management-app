@@ -101,19 +101,21 @@ const TaskTable = () => {
                     {task.status}
                   </span>
                 </td>
-                <td className="flex px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <button
-                    onClick={() => handleDelete(task.id)}
-                    className="text-red-500 hover:text-red-700 mr-4"
-                  >
-                    <FaTrash />
-                  </button>
-                  <Link
-                    to={`/edit-task/${task.id}`}
-                    className="text-blue-500 hover:text-blue-700"
-                  >
-                    <FaEdit />
-                  </Link>
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <div className="flex items-center space-x-4">
+                    <button
+                      onClick={() => handleDelete(task.id)}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      <FaTrash />
+                    </button>
+                    <Link
+                      to={`/edit-task/${task.id}`}
+                      className="text-blue-500 hover:text-blue-700"
+                    >
+                      <FaEdit />
+                    </Link>
+                  </div>
                 </td>
               </tr>
             ))
