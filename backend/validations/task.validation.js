@@ -12,9 +12,9 @@ const queryTaskValidation = [
     .withMessage("Limit must be an integer between 10 and 100"),
   query("status")
     .optional()
-    .isIn(["Pending", "In Progress", "Completed"])
+    .isIn(["", "Pending", "In Progress", "Completed"])
     .withMessage(
-      "Status must be one of the following: Pending, In progress, Completed"
+      "Status must be one of the following: Pending, In Progress, Completed"
     ),
   query("name").optional().isString().withMessage("Name must be a string"),
 

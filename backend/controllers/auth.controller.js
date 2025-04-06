@@ -49,7 +49,21 @@ exports.login = async (req, res) => {
       expiresIn: process.env.JWT_EXPIRES_IN,
     });
 
-    res.status(200).json({ success: true, token });
+    res.status(200).json({ success: true, token, user });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message, error: err });
+  }
+};
+
+exports.profile = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.user.id);
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, message: "User not found" });
+    }
+    res.status(200).json({ success: true, user });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message, error: err });
   }

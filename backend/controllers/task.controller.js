@@ -4,7 +4,8 @@ const { Task } = require("../models");
 exports.getTasks = async (req, res) => {
   try {
     const { page = 1, limit = 10, status, name } = req.query;
-    const offset = (page - 1) * limit;
+    const pageNumber = parseInt(page);
+    const offset = (pageNumber - 1) * limit;
 
     let whereClause = {
       userId: req.user.id,
@@ -30,8 +31,26 @@ exports.getTasks = async (req, res) => {
       meta: {
         totalTasks: tasks.count,
         totalPages: Math.ceil(tasks.count / limit),
-        currentPage: page,
+        currentPage: pageNumber,
       },
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+exports.getTask = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const task = await Task.findOne({ where: { id, userId: req.user.id } });
+    if (!task) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Task not found" });
+    }
+    res.status(200).json({
+      success: true,
+      data: task,
     });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });

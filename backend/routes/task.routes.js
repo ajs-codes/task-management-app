@@ -2,6 +2,7 @@ const express = require("express");
 
 const {
   createTask,
+  getTask,
   getTasks,
   updateTask,
   deleteTask,
@@ -17,6 +18,7 @@ const { authenticate } = require("../middlewares/auth.middleware");
 const router = express.Router();
 
 router.get("/", authenticate, queryTaskValidation, getTasks);
+router.get("/:id", authenticate, paramTaskValidation, getTask);
 router.post("/", authenticate, createOrUpdateTaskValidation, createTask);
 router.put(
   "/:id",
